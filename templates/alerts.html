@@ -1,0 +1,418 @@
+{% extends "base.html" %}
+
+{% block title %}Alerts{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <div class="page-eyebrow">SECURITY MONITORING</div>
+        <h1>Alerts</h1>
+        <p>Review and investigate threats detected by the network detection model.</p>
+    </div>
+
+    <div class="alerts-live-status">
+        <span class="alerts-status-dot"></span>
+        <div>
+            <strong>ALERT MONITOR</strong>
+            <small>ACTIVE</small>
+        </div>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     ALERT SUMMARY
+===================================================== -->
+
+<div class="alerts-summary-grid">
+
+    <div class="alert-stat-card">
+        <div class="alert-stat-icon total">!</div>
+
+        <div>
+            <span class="alert-stat-label">TOTAL ALERTS</span>
+            <h2 id="totalAlerts">—</h2>
+        </div>
+    </div>
+
+
+    <div class="alert-stat-card">
+        <div class="alert-stat-icon critical">!</div>
+
+        <div>
+            <span class="alert-stat-label">CRITICAL</span>
+            <h2 id="criticalAlerts">—</h2>
+        </div>
+    </div>
+
+
+    <div class="alert-stat-card">
+        <div class="alert-stat-icon high">↑</div>
+
+        <div>
+            <span class="alert-stat-label">HIGH RISK</span>
+            <h2 id="highAlerts">—</h2>
+        </div>
+    </div>
+
+
+    <div class="alert-stat-card">
+        <div class="alert-stat-icon medium">•</div>
+
+        <div>
+            <span class="alert-stat-label">MEDIUM / LOW</span>
+            <h2 id="mediumLowAlerts">—</h2>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ALERT PANEL
+===================================================== -->
+
+<div class="alerts-panel">
+
+    <div class="alerts-panel-header">
+
+        <div>
+            <h2>Security Alerts</h2>
+            <p>Detected network events requiring review.</p>
+        </div>
+
+        <div class="alerts-count">
+            <strong id="visibleAlertCount">0</strong>
+            alerts
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FILTERS
+    ================================================= -->
+
+    <div class="alerts-filters">
+
+        <div class="alerts-filter-group">
+
+            <label for="alertSeverity">
+                SEVERITY
+            </label>
+
+            <select id="alertSeverity">
+
+                <option value="ALL">
+                    All Severities
+                </option>
+
+                <option value="CRITICAL">
+                    Critical
+                </option>
+
+                <option value="HIGH">
+                    High
+                </option>
+
+                <option value="MEDIUM">
+                    Medium
+                </option>
+
+                <option value="LOW">
+                    Low
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="alerts-filter-group alerts-search-group">
+
+            <label for="alertSearch">
+                SEARCH
+            </label>
+
+            <div class="alerts-search-box">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="alertSearch"
+                    placeholder="Search alerts, threat types, or records..."
+                >
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="alerts-reset-btn"
+            id="resetAlertFilters"
+        >
+            Reset Filters
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         ALERT TABLE
+    ================================================= -->
+
+    <div class="alerts-table-wrapper">
+
+        <table class="alerts-table">
+
+            <thead>
+
+                <tr>
+                    <th>ALERT</th>
+                    <th>THREAT TYPE</th>
+                    <th>SEVERITY</th>
+                    <th>MODEL CONFIDENCE</th>
+                    <th>DATASET RECORD</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody id="alertsTableBody">
+
+                <tr>
+                    <td
+                        colspan="7"
+                        class="alerts-loading"
+                    >
+                        Loading security alerts...
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- =================================================
+         PAGINATION
+    ================================================= -->
+
+    <div class="alerts-pagination">
+
+        <button
+            type="button"
+            class="alerts-pagination-btn"
+            id="previousAlertPage"
+        >
+            ← Previous
+        </button>
+
+
+        <div
+            id="alertPaginationNumbers"
+            class="alert-pagination-numbers"
+        ></div>
+
+
+        <button
+            type="button"
+            class="alerts-pagination-btn"
+            id="nextAlertPage"
+        >
+            Next →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ALERT DETAILS MODAL
+===================================================== -->
+
+<div
+    class="alert-modal"
+    id="alertModal"
+    aria-hidden="true"
+>
+
+    <div
+        class="alert-modal-overlay"
+        id="alertModalOverlay"
+    ></div>
+
+
+    <div class="alert-modal-box">
+
+        <div class="alert-modal-header">
+
+            <div>
+
+                <span class="alert-modal-eyebrow">
+                    SECURITY ALERT
+                </span>
+
+                <h2 id="modalAlertTitle">
+                    Alert Details
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="alert-modal-close"
+                id="closeAlertModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="alert-modal-content">
+
+            <div class="alert-detail-severity">
+
+                <span>
+                    SEVERITY
+                </span>
+
+                <strong id="modalAlertSeverity">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="alert-detail-grid">
+
+                <div class="alert-detail-item">
+
+                    <span>
+                        THREAT TYPE
+                    </span>
+
+                    <strong id="modalThreatType">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="alert-detail-item">
+
+                    <span>
+                        MODEL CONFIDENCE
+                    </span>
+
+                    <strong id="modalConfidence">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="alert-detail-item">
+
+                    <span>
+                        DATASET RECORD
+                    </span>
+
+                    <strong id="modalRecord">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="alert-detail-item">
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong id="modalStatus">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="alert-detail-item">
+
+                    <span>
+                        SOURCE
+                    </span>
+
+                    <strong id="modalSource">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="alert-detail-item">
+
+                    <span>
+                        DESTINATION
+                    </span>
+
+                    <strong id="modalDestination">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="alert-detail-description">
+
+                <span>
+                    ANALYSIS
+                </span>
+
+                <p id="modalDescription">
+                    —
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="alert-modal-footer">
+
+            <button
+                type="button"
+                class="alert-close-btn"
+                id="closeAlertModalBottom"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/alerts.js') }}"></script>
+
+{% endblock %}

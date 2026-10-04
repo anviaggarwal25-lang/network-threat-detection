@@ -1,0 +1,696 @@
+{% extends "base.html" %}
+
+{% block title %}System{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <div class="page-eyebrow">SYSTEM CONFIGURATION</div>
+
+        <h1>System</h1>
+
+        <p>
+            Monitor the application environment, machine-learning model,
+            dataset and service configuration.
+        </p>
+    </div>
+
+    <div class="system-live-status">
+
+        <span class="system-status-dot"></span>
+
+        <div>
+            <strong>SYSTEM STATUS</strong>
+            <small>OPERATIONAL</small>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =====================================================
+     SYSTEM SUMMARY
+===================================================== -->
+
+<div class="system-summary-grid">
+
+    <div class="system-stat-card">
+
+        <div class="system-stat-icon online">
+            ✓
+        </div>
+
+        <div>
+            <span class="system-stat-label">
+                APPLICATION
+            </span>
+
+            <h2>ONLINE</h2>
+
+            <small>
+                Flask application running
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="system-stat-card">
+
+        <div class="system-stat-icon model">
+            AI
+        </div>
+
+        <div>
+            <span class="system-stat-label">
+                AI MODEL
+            </span>
+
+            <h2>READY</h2>
+
+            <small>
+                Random Forest loaded
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="system-stat-card">
+
+        <div class="system-stat-icon dataset">
+            DB
+        </div>
+
+        <div>
+            <span class="system-stat-label">
+                DATASET
+            </span>
+
+            <h2>READY</h2>
+
+            <small>
+                CIC-IDS2017 available
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="system-stat-card">
+
+        <div class="system-stat-icon api">
+            /
+        </div>
+
+        <div>
+            <span class="system-stat-label">
+                API
+            </span>
+
+            <h2>ACTIVE</h2>
+
+            <small>
+                Backend endpoints enabled
+            </small>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SYSTEM INFORMATION
+===================================================== -->
+
+<div class="system-grid">
+
+
+    <!-- =================================================
+         APPLICATION
+    ================================================= -->
+
+    <div class="system-panel">
+
+        <div class="system-panel-header">
+
+            <div>
+
+                <span class="system-section-label">
+                    APPLICATION
+                </span>
+
+                <h2>Application Information</h2>
+
+                <p>
+                    Core information about the threat detection application.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-info-list">
+
+            <div class="system-info-row">
+
+                <span>Application</span>
+
+                <strong>
+                    Network Threat Detection
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Framework</span>
+
+                <strong>
+                    Flask
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Application Mode</span>
+
+                <strong>
+                    Production
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Detection Engine</span>
+
+                <strong>
+                    Machine Learning
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Classification</span>
+
+                <strong>
+                    Multi-Class
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Application Status</span>
+
+                <strong class="system-value-online">
+                    ● Operational
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         MODEL
+    ================================================= -->
+
+    <div class="system-panel">
+
+        <div class="system-panel-header">
+
+            <div>
+
+                <span class="system-section-label">
+                    MACHINE LEARNING
+                </span>
+
+                <h2>Model Configuration</h2>
+
+                <p>
+                    Configuration of the network threat classification model.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-info-list">
+
+            <div class="system-info-row">
+
+                <span>Algorithm</span>
+
+                <strong>
+                    Random Forest
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Model File</span>
+
+                <strong>
+                    threat_detection_model.pkl
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Feature File</span>
+
+                <strong>
+                    feature_names.pkl
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Input Features</span>
+
+                <strong>
+                    78
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Prediction Method</span>
+
+                <strong>
+                    Classification
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Probability Output</span>
+
+                <strong>
+                    Enabled
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         DATASET
+    ================================================= -->
+
+    <div class="system-panel">
+
+        <div class="system-panel-header">
+
+            <div>
+
+                <span class="system-section-label">
+                    DATA SOURCE
+                </span>
+
+                <h2>Dataset Configuration</h2>
+
+                <p>
+                    Network-flow dataset used by the detection system.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-info-list">
+
+            <div class="system-info-row">
+
+                <span>Dataset</span>
+
+                <strong>
+                    CIC-IDS2017
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Evaluation Data</span>
+
+                <strong>
+                    Held-Out Test Data
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Dataset File</span>
+
+                <strong>
+                    heldout_test_data.csv
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Feature Count</span>
+
+                <strong>
+                    78
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Label Column</span>
+
+                <strong>
+                    Attack_Type
+                </strong>
+
+            </div>
+
+
+            <div class="system-info-row">
+
+                <span>Dataset Status</span>
+
+                <strong class="system-value-online">
+                    ● Available
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         THREAT CLASSES
+    ================================================= -->
+
+    <div class="system-panel">
+
+        <div class="system-panel-header">
+
+            <div>
+
+                <span class="system-section-label">
+                    CLASSIFICATION
+                </span>
+
+                <h2>Threat Classes</h2>
+
+                <p>
+                    Traffic categories recognized by the detection model.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-threat-list">
+
+            <div class="system-threat-item">
+
+                <div class="system-threat-marker benign"></div>
+
+                <div>
+                    <strong>BENIGN</strong>
+                    <span>Normal network traffic</span>
+                </div>
+
+            </div>
+
+
+            <div class="system-threat-item">
+
+                <div class="system-threat-marker brute"></div>
+
+                <div>
+                    <strong>BRUTE FORCE</strong>
+                    <span>Credential or service attack traffic</span>
+                </div>
+
+            </div>
+
+
+            <div class="system-threat-item">
+
+                <div class="system-threat-marker ddos"></div>
+
+                <div>
+                    <strong>DDoS</strong>
+                    <span>Distributed denial-of-service traffic</span>
+                </div>
+
+            </div>
+
+
+            <div class="system-threat-item">
+
+                <div class="system-threat-marker dos"></div>
+
+                <div>
+                    <strong>DoS</strong>
+                    <span>Denial-of-service traffic</span>
+                </div>
+
+            </div>
+
+
+            <div class="system-threat-item">
+
+                <div class="system-threat-marker scan"></div>
+
+                <div>
+                    <strong>PORT SCAN</strong>
+                    <span>Network reconnaissance traffic</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SYSTEM COMPONENTS
+===================================================== -->
+
+<div class="system-panel system-components-panel">
+
+    <div class="system-panel-header">
+
+        <div>
+
+            <span class="system-section-label">
+                ARCHITECTURE
+            </span>
+
+            <h2>System Components</h2>
+
+            <p>
+                Main components involved in the network threat detection workflow.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="system-components">
+
+        <div class="system-component">
+
+            <div class="component-number">
+                01
+            </div>
+
+            <div>
+
+                <strong>
+                    Network Traffic
+                </strong>
+
+                <span>
+                    CIC-IDS2017 network-flow records
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-component-arrow">
+            →
+        </div>
+
+
+        <div class="system-component">
+
+            <div class="component-number">
+                02
+            </div>
+
+            <div>
+
+                <strong>
+                    Feature Processing
+                </strong>
+
+                <span>
+                    Prepare and align 78 input features
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-component-arrow">
+            →
+        </div>
+
+
+        <div class="system-component">
+
+            <div class="component-number">
+                03
+            </div>
+
+            <div>
+
+                <strong>
+                    Random Forest
+                </strong>
+
+                <span>
+                    Classify network traffic
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="system-component-arrow">
+            →
+        </div>
+
+
+        <div class="system-component">
+
+            <div class="component-number">
+                04
+            </div>
+
+            <div>
+
+                <strong>
+                    Threat Result
+                </strong>
+
+                <span>
+                    Class, probability and severity
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SYSTEM FOOTER STATUS
+===================================================== -->
+
+<div class="system-footer-status">
+
+    <div class="system-footer-left">
+
+        <span class="system-footer-dot"></span>
+
+        <div>
+
+            <strong>
+                All core components operational
+            </strong>
+
+            <small>
+                Network Threat Detection System
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="system-footer-right">
+
+        <span>
+            Flask
+        </span>
+
+        <span>
+            •
+        </span>
+
+        <span>
+            Random Forest
+        </span>
+
+        <span>
+            •
+        </span>
+
+        <span>
+            CIC-IDS2017
+        </span>
+
+    </div>
+
+</div>
+
+{% endblock %}

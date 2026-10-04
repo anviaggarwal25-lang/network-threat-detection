@@ -1,0 +1,484 @@
+{% extends "base.html" %}
+
+{% block title %}Model Performance{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <div class="page-eyebrow">MODEL EVALUATION</div>
+        <h1>Model Performance</h1>
+        <p>Evaluate the performance and reliability of the trained network threat detection model.</p>
+    </div>
+
+    <div class="performance-model-status">
+        <span class="performance-status-dot"></span>
+
+        <div>
+            <strong>RANDOM FOREST</strong>
+            <small>MODEL ACTIVE</small>
+        </div>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     MODEL SUMMARY
+===================================================== -->
+
+<div class="performance-summary-grid">
+
+    <div class="performance-stat-card">
+
+        <div class="performance-stat-icon accuracy">
+            %
+        </div>
+
+        <div>
+            <span class="performance-stat-label">
+                ACCURACY
+            </span>
+
+            <h2 id="modelAccuracy">—</h2>
+
+            <small>
+                Overall classification accuracy
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="performance-stat-card">
+
+        <div class="performance-stat-icon precision">
+            P
+        </div>
+
+        <div>
+            <span class="performance-stat-label">
+                PRECISION
+            </span>
+
+            <h2 id="modelPrecision">—</h2>
+
+            <small>
+                Correct positive predictions
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="performance-stat-card">
+
+        <div class="performance-stat-icon recall">
+            R
+        </div>
+
+        <div>
+            <span class="performance-stat-label">
+                RECALL
+            </span>
+
+            <h2 id="modelRecall">—</h2>
+
+            <small>
+                Threat detection coverage
+            </small>
+        </div>
+
+    </div>
+
+
+    <div class="performance-stat-card">
+
+        <div class="performance-stat-icon f1">
+            F1
+        </div>
+
+        <div>
+            <span class="performance-stat-label">
+                F1 SCORE
+            </span>
+
+            <h2 id="modelF1">—</h2>
+
+            <small>
+                Balance of precision and recall
+            </small>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODEL INFORMATION
+===================================================== -->
+
+<div class="performance-info-grid">
+
+    <div class="performance-panel model-information">
+
+        <div class="performance-panel-header">
+
+            <div>
+                <span class="performance-section-label">
+                    MODEL DETAILS
+                </span>
+
+                <h2>Model Information</h2>
+
+                <p>
+                    Configuration of the trained machine-learning model.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="model-info-list">
+
+            <div class="model-info-row">
+
+                <span>Algorithm</span>
+
+                <strong id="modelAlgorithm">
+                    Random Forest
+                </strong>
+
+            </div>
+
+
+            <div class="model-info-row">
+
+                <span>Classification Type</span>
+
+                <strong id="classificationType">
+                    Multi-Class
+                </strong>
+
+            </div>
+
+
+            <div class="model-info-row">
+
+                <span>Input Features</span>
+
+                <strong id="modelFeatures">
+                    78
+                </strong>
+
+            </div>
+
+
+            <div class="model-info-row">
+
+                <span>Threat Classes</span>
+
+                <strong id="modelClasses">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="model-info-row">
+
+                <span>Evaluation Dataset</span>
+
+                <strong>
+                    CIC-IDS2017
+                </strong>
+
+            </div>
+
+
+            <div class="model-info-row">
+
+                <span>Test Dataset</span>
+
+                <strong>
+                    Held-Out Test Data
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         PERFORMANCE OVERVIEW
+    ================================================= -->
+
+    <div class="performance-panel">
+
+        <div class="performance-panel-header">
+
+            <div>
+                <span class="performance-section-label">
+                    EVALUATION
+                </span>
+
+                <h2>Performance Overview</h2>
+
+                <p>
+                    Summary of classification performance.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="metric-bars">
+
+            <div class="metric-bar-item">
+
+                <div class="metric-bar-header">
+                    <span>Accuracy</span>
+                    <strong id="accuracyBarValue">—</strong>
+                </div>
+
+                <div class="metric-track">
+                    <div
+                        class="metric-fill accuracy-fill"
+                        id="accuracyBar"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <div class="metric-bar-item">
+
+                <div class="metric-bar-header">
+                    <span>Precision</span>
+                    <strong id="precisionBarValue">—</strong>
+                </div>
+
+                <div class="metric-track">
+                    <div
+                        class="metric-fill precision-fill"
+                        id="precisionBar"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <div class="metric-bar-item">
+
+                <div class="metric-bar-header">
+                    <span>Recall</span>
+                    <strong id="recallBarValue">—</strong>
+                </div>
+
+                <div class="metric-track">
+                    <div
+                        class="metric-fill recall-fill"
+                        id="recallBar"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <div class="metric-bar-item">
+
+                <div class="metric-bar-header">
+                    <span>F1 Score</span>
+                    <strong id="f1BarValue">—</strong>
+                </div>
+
+                <div class="metric-track">
+                    <div
+                        class="metric-fill f1-fill"
+                        id="f1Bar"
+                    ></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CLASS PERFORMANCE
+===================================================== -->
+
+<div class="performance-panel class-performance-panel">
+
+    <div class="performance-panel-header">
+
+        <div>
+            <span class="performance-section-label">
+                CLASSIFICATION RESULTS
+            </span>
+
+            <h2>Per-Class Performance</h2>
+
+            <p>
+                Precision, recall and F1 score for each traffic category.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="class-performance-table-wrapper">
+
+        <table class="class-performance-table">
+
+            <thead>
+
+                <tr>
+                    <th>THREAT CLASS</th>
+                    <th>PRECISION</th>
+                    <th>RECALL</th>
+                    <th>F1 SCORE</th>
+                    <th>SUPPORT</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody id="classPerformanceBody">
+
+                <tr>
+                    <td
+                        colspan="5"
+                        class="performance-loading"
+                    >
+                        Loading model evaluation...
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONFUSION MATRIX
+===================================================== -->
+
+<div class="performance-panel confusion-panel">
+
+    <div class="performance-panel-header">
+
+        <div>
+            <span class="performance-section-label">
+                CLASSIFICATION ANALYSIS
+            </span>
+
+            <h2>Confusion Matrix</h2>
+
+            <p>
+                Comparison between actual and predicted traffic classes.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="confusion-matrix-container">
+
+        <div
+            id="confusionMatrix"
+            class="confusion-matrix"
+        >
+
+            <div class="confusion-placeholder">
+                <div class="confusion-placeholder-icon">
+                    ×
+                </div>
+
+                <strong>
+                    Evaluation data will appear here
+                </strong>
+
+                <span>
+                    Confusion matrix will be generated from the held-out test dataset.
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DATASET INFORMATION
+===================================================== -->
+
+<div class="performance-dataset-panel">
+
+    <div class="dataset-information">
+
+        <div class="dataset-info-icon">
+            ◫
+        </div>
+
+        <div>
+
+            <span>
+                EVALUATION DATASET
+            </span>
+
+            <strong>
+                CIC-IDS2017 — Held-Out Test Data
+            </strong>
+
+            <p>
+                Model performance is calculated using network-flow records
+                that were reserved for evaluation.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="dataset-info-values">
+
+        <div>
+            <span>FEATURES</span>
+            <strong id="datasetFeatures">78</strong>
+        </div>
+
+        <div>
+            <span>TEST RECORDS</span>
+            <strong id="datasetRecords">—</strong>
+        </div>
+
+        <div>
+            <span>CLASSES</span>
+            <strong id="datasetClasses">—</strong>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/performance.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block title %}Traffic Explorer{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <div class="page-eyebrow">NETWORK DATA</div>
+        <h1>Traffic Explorer</h1>
+        <p>Explore and inspect network-flow records from the CIC-IDS2017 dataset.</p>
+    </div>
+
+    <div class="dataset-status">
+        <span class="status-dot"></span>
+        <div>
+            <strong>CIC-IDS2017</strong>
+            <small>HELD-OUT TEST DATA</small>
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================
+     TRAFFIC SUMMARY
+========================= -->
+
+<div class="traffic-summary-grid">
+
+    <div class="traffic-stat-card">
+        <div class="traffic-stat-icon">▦</div>
+        <div>
+            <span class="traffic-stat-label">TOTAL RECORDS</span>
+            <h2 id="totalRecords">—</h2>
+        </div>
+    </div>
+
+    <div class="traffic-stat-card">
+        <div class="traffic-stat-icon benign">✓</div>
+        <div>
+            <span class="traffic-stat-label">BENIGN TRAFFIC</span>
+            <h2 id="benignRecords">—</h2>
+        </div>
+    </div>
+
+    <div class="traffic-stat-card">
+        <div class="traffic-stat-icon attack">!</div>
+        <div>
+            <span class="traffic-stat-label">ATTACK TRAFFIC</span>
+            <h2 id="attackRecords">—</h2>
+        </div>
+    </div>
+
+    <div class="traffic-stat-card">
+        <div class="traffic-stat-icon feature">78</div>
+        <div>
+            <span class="traffic-stat-label">FEATURES</span>
+            <h2>78</h2>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FILTER PANEL
+========================= -->
+
+<div class="traffic-panel">
+
+    <div class="traffic-panel-header">
+        <div>
+            <h2>Traffic Records</h2>
+            <p>Filter and inspect individual network-flow records.</p>
+        </div>
+
+        <div class="traffic-record-count">
+            Showing <strong id="visibleCount">0</strong> records
+        </div>
+    </div>
+
+
+    <div class="traffic-filters">
+
+        <div class="traffic-filter-group">
+            <label for="trafficType">Traffic Type</label>
+
+            <select id="trafficType">
+                <option value="ALL">All Traffic</option>
+                <option value="BENIGN">Benign</option>
+                <option value="ATTACK">Attack Traffic</option>
+            </select>
+        </div>
+
+
+        <div class="traffic-filter-group traffic-search-group">
+            <label for="trafficSearch">Search</label>
+
+            <div class="traffic-search-box">
+                <span>⌕</span>
+                <input
+                    type="text"
+                    id="trafficSearch"
+                    placeholder="Search traffic records..."
+                >
+            </div>
+        </div>
+
+
+        <button
+            type="button"
+            class="traffic-reset-btn"
+            id="resetTrafficFilters"
+        >
+            Reset Filters
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         TABLE
+    ========================= -->
+
+    <div class="traffic-table-wrapper">
+
+        <table class="traffic-table">
+
+            <thead>
+                <tr>
+                    <th>RECORD</th>
+                    <th>DESTINATION PORT</th>
+                    <th>FLOW DURATION</th>
+                    <th>FWD PACKETS</th>
+                    <th>BWD PACKETS</th>
+                    <th>FLOW BYTES/S</th>
+                    <th>DATASET LABEL</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+
+            <tbody id="trafficTableBody">
+
+                <tr>
+                    <td colspan="8" class="traffic-loading">
+                        Loading traffic records...
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- =========================
+         PAGINATION
+    ========================= -->
+
+    <div class="traffic-pagination">
+
+        <button
+            type="button"
+            id="previousPage"
+            class="pagination-btn"
+        >
+            ← Previous
+        </button>
+
+        <div id="paginationNumbers" class="pagination-numbers"></div>
+
+        <button
+            type="button"
+            id="nextPage"
+            class="pagination-btn"
+        >
+            Next →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     RECORD DETAILS MODAL
+========================= -->
+
+<div
+    class="traffic-modal"
+    id="trafficModal"
+    aria-hidden="true"
+>
+
+    <div class="traffic-modal-overlay" id="trafficModalOverlay"></div>
+
+    <div class="traffic-modal-box">
+
+        <div class="traffic-modal-header">
+
+            <div>
+                <span class="modal-eyebrow">NETWORK FLOW</span>
+                <h2 id="modalRecordTitle">Record Details</h2>
+            </div>
+
+            <button
+                type="button"
+                class="traffic-modal-close"
+                id="closeTrafficModal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-label-section">
+            <span>DATASET LABEL</span>
+            <strong id="modalRecordLabel">—</strong>
+        </div>
+
+
+        <div
+            class="traffic-feature-grid"
+            id="trafficFeatureGrid"
+        >
+            <!-- Features inserted by JavaScript -->
+        </div>
+
+
+        <div class="traffic-modal-footer">
+
+            <button
+                type="button"
+                class="traffic-close-btn"
+                id="closeTrafficModalBottom"
+            >
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/traffic.js') }}"></script>
+{% endblock %}

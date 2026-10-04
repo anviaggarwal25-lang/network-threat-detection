@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        Network Intelligence
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                NI
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    NETWORK
+                </div>
+
+                <div class="brand-name">
+                    INTELLIGENCE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-label">
+            ANALYSIS
+        </div>
+
+
+        <nav class="navigation">
+
+            <a
+                href="/"
+                class="nav-item
+                {% if active_page == 'overview' %}
+                active
+                {% endif %}"
+            >
+
+                <span class="nav-index">
+                    01
+                </span>
+
+                <span>
+                    Overview
+                </span>
+
+            </a>
+
+
+            <a
+                href="/analysis"
+                class="nav-item
+                {% if active_page == 'analysis' %}
+                active
+                {% endif %}"
+            >
+
+                <span class="nav-index">
+                    02
+                </span>
+
+                <span>
+                    Threat Analysis
+                </span>
+
+            </a>
+
+
+            <a
+                href="/traffic"
+                class="nav-item
+                {% if active_page == 'traffic' %}
+                active
+                {% endif %}"
+            >
+
+                <span class="nav-index">
+                    03
+                </span>
+
+                <span>
+                    Traffic Explorer
+                </span>
+
+            </a>
+
+
+            <a
+                href="/alerts"
+                class="nav-item
+                {% if active_page == 'alerts' %}
+                active
+                {% endif %}"
+            >
+
+                <span class="nav-index">
+                    04
+                </span>
+
+                <span>
+                    Alerts
+                </span>
+
+            </a>
+
+
+            <a
+                href="/performance"
+                class="nav-item
+                {% if active_page == 'performance' %}
+                active
+                {% endif %}"
+            >
+
+                <span class="nav-index">
+                    05
+                </span>
+
+                <span>
+                    Model Performance
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="nav-label system-label">
+            SYSTEM
+        </div>
+
+
+        <nav class="navigation">
+
+            <a
+                href="/system"
+                class="nav-item
+                {% if active_page == 'system' %}
+                active
+                {% endif %}"
+            >
+
+                <span class="nav-index">
+                    06
+                </span>
+
+                <span>
+                    System
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+
+                    <strong>
+                        MODEL READY
+                    </strong>
+
+                    <small>
+                        Random Forest
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="sidebar-meta">
+
+                CIC-IDS2017
+
+                <span>•</span>
+
+                78 FEATURES
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN APPLICATION -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <span class="topbar-product">
+                    NETWORK INTELLIGENCE
+                </span>
+
+                <span class="topbar-separator">
+                    /
+                </span>
+
+                <span class="topbar-page">
+                    {{ page_name }}
+                </span>
+
+            </div>
+
+
+            <div class="topbar-status">
+
+                <span class="status-dot"></span>
+
+                SYSTEM READY
+
+            </div>
+
+        </header>
+
+
+        <div class="page-content">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+
+        <footer class="footer">
+
+            <span>
+                Network Intelligence Platform
+            </span>
+
+            <span>
+                CIC-IDS2017
+                &nbsp;·&nbsp;
+                Random Forest
+                &nbsp;·&nbsp;
+                Flask
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    {% block scripts %}
+
+    {% endblock %}
+
+</body>
+
+</html>

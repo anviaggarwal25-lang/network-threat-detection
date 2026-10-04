@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}
+Threat Analysis | Network Intelligence
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <div class="page-eyebrow">
+            MACHINE LEARNING ANALYSIS
+        </div>
+
+        <h1 class="page-title">
+            Threat Analysis
+        </h1>
+
+        <p class="page-subtitle">
+            Select a labelled network-flow scenario and evaluate it
+            using the trained Random Forest classification model.
+        </p>
+
+    </div>
+
+    <div class="page-action">
+        MODEL · RANDOM FOREST
+    </div>
+
+</div>
+
+
+<!-- ============================================================
+     ANALYSIS WORKSPACE
+============================================================ -->
+
+<section class="analysis-layout">
+
+
+    <!-- ========================================================
+         LEFT: CONTROLS
+    ========================================================= -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Traffic Sample
+                </div>
+
+                <div class="card-description">
+                    Select a network-flow scenario
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-controls">
+
+
+            <label class="form-label">
+                TRAFFIC SCENARIO
+            </label>
+
+
+            <select
+                id="scenarioSelect"
+                class="form-control"
+            >
+
+                <option value="BENIGN">
+                    BENIGN
+                </option>
+
+                <option value="BRUTE FORCE">
+                    BRUTE FORCE
+                </option>
+
+                <option value="DDoS">
+                    DDoS
+                </option>
+
+                <option value="DoS">
+                    DoS
+                </option>
+
+                <option value="PORT SCAN">
+                    PORT SCAN
+                </option>
+
+            </select>
+
+
+            <button
+                id="analyzeButton"
+                class="btn btn-primary analysis-button"
+            >
+                ANALYZE TRAFFIC
+            </button>
+
+
+            <div class="analysis-note">
+
+                <strong>
+                    Data source
+                </strong>
+
+                <span>
+                    CIC-IDS2017 labelled network-flow dataset
+                </span>
+
+            </div>
+
+
+            <div class="analysis-note">
+
+                <strong>
+                    Model
+                </strong>
+
+                <span>
+                    Random Forest classifier
+                </span>
+
+            </div>
+
+
+            <div class="analysis-note">
+
+                <strong>
+                    Features
+                </strong>
+
+                <span>
+                    78 network-flow features
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         RIGHT: RESULT
+    ========================================================= -->
+
+    <div class="card analysis-result">
+
+        <div class="result-label">
+            AI CLASSIFICATION
+        </div>
+
+
+        <div class="result-top">
+
+            <div>
+
+                <div
+                    id="resultThreat"
+                    class="result-threat"
+                >
+                    —
+                </div>
+
+                <div
+                    id="resultStatus"
+                    class="result-status"
+                >
+                    Awaiting analysis
+                </div>
+
+            </div>
+
+
+            <div
+                id="resultRisk"
+                class="badge"
+            >
+                NOT ANALYZED
+            </div>
+
+        </div>
+
+
+        <!-- CONFIDENCE -->
+
+        <div class="result-confidence">
+
+            <div class="confidence-header">
+
+                <span>
+                    MODEL PROBABILITY
+                </span>
+
+                <strong id="resultConfidence">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="progress-container">
+
+                <div
+                    id="confidenceBar"
+                    class="progress-bar"
+                    style="width: 0%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="result-details">
+
+            <div class="result-detail">
+
+                <span>
+                    Dataset label
+                </span>
+
+                <strong id="actualLabel">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="result-detail">
+
+                <span>
+                    Model prediction
+                </span>
+
+                <strong id="predictedLabel">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="result-detail">
+
+                <span>
+                    Classification
+                </span>
+
+                <strong id="classificationStatus">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROBABILITIES -->
+
+        <div class="probability-section">
+
+            <div class="section-mini-title">
+                CLASS PROBABILITIES
+            </div>
+
+
+            <div id="probabilities">
+
+                <div class="loading-state">
+                    Run an analysis to view probabilities.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================================
+     FLOW FEATURES
+============================================================ -->
+
+<section class="card feature-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <div class="card-title">
+                Network Flow Characteristics
+            </div>
+
+            <div class="card-description">
+                Selected record characteristics used by the analysis pipeline
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="featureGrid"
+        class="feature-grid"
+    >
+
+        <div class="empty-state">
+
+            <div class="empty-state-title">
+                No traffic analyzed
+            </div>
+
+            <div class="empty-state-description">
+                Run an analysis above to inspect the selected network flow.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script
+    src="{{ url_for('static', filename='js/analysis.js') }}"
+></script>
+
+{% endblock %}

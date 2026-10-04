@@ -1,0 +1,389 @@
+{% extends "base.html" %}
+
+{% block title %}
+Overview | Network Intelligence
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <div class="page-eyebrow">
+            NETWORK SECURITY ANALYTICS
+        </div>
+
+        <h1 class="page-title">
+            Network Overview
+        </h1>
+
+        <p class="page-subtitle">
+
+            A high-level view of the network-flow
+            dataset and the threat patterns identified
+            by the analysis system.
+
+        </p>
+
+    </div>
+
+
+    <div class="page-action">
+
+        DATASET
+        &nbsp;·&nbsp;
+        CIC-IDS2017
+
+    </div>
+
+</div>
+
+
+<!-- ========================================================
+     METRICS
+========================================================= -->
+
+<section class="metric-grid">
+
+
+    <div class="metric-card metric-blue">
+
+        <div class="metric-label">
+            TOTAL NETWORK FLOWS
+        </div>
+
+        <div
+            id="totalFlows"
+            class="metric-value"
+        >
+            —
+        </div>
+
+        <div class="metric-note">
+            Records available for analysis
+        </div>
+
+    </div>
+
+
+    <div class="metric-card metric-green">
+
+        <div class="metric-label">
+            BENIGN FLOWS
+        </div>
+
+        <div
+            id="benignFlows"
+            class="metric-value"
+        >
+            —
+        </div>
+
+        <div class="metric-note">
+            Classified as normal traffic
+        </div>
+
+    </div>
+
+
+    <div class="metric-card metric-red">
+
+        <div class="metric-label">
+            ATTACK FLOWS
+        </div>
+
+        <div
+            id="attackFlows"
+            class="metric-value"
+        >
+            —
+        </div>
+
+        <div class="metric-note">
+            Classified as suspicious
+        </div>
+
+    </div>
+
+
+    <div class="metric-card metric-purple">
+
+        <div class="metric-label">
+            ATTACK CATEGORIES
+        </div>
+
+        <div class="metric-value">
+            4
+        </div>
+
+        <div class="metric-note">
+            Threat classes in the dataset
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     DATASET + MODEL
+========================================================= -->
+
+<section class="two-column">
+
+
+    <!-- THREAT DISTRIBUTION -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Threat Distribution
+                </div>
+
+                <div class="card-description">
+                    Distribution of labelled network flows
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="distribution"
+            class="distribution-list"
+        >
+
+            <div class="loading-state">
+                Loading dataset statistics...
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MODEL INFORMATION -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <div>
+
+                <div class="card-title">
+                    Analysis Model
+                </div>
+
+                <div class="card-description">
+                    Machine-learning configuration
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-list">
+
+
+            <div class="info-row">
+
+                <span class="info-key">
+                    Algorithm
+                </span>
+
+                <span class="info-value">
+                    Random Forest
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-key">
+                    Dataset
+                </span>
+
+                <span class="info-value">
+                    CIC-IDS2017
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-key">
+                    Network features
+                </span>
+
+                <span class="info-value">
+                    78
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-key">
+                    Training records
+                </span>
+
+                <span class="info-value">
+                    75,068
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-key">
+                    Testing records
+                </span>
+
+                <span class="info-value">
+                    18,767
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-key">
+                    Model status
+                </span>
+
+                <span class="badge badge-benign">
+                    READY
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+     WHAT THE SYSTEM DOES
+========================================================= -->
+
+<section class="card">
+
+    <div class="card-header">
+
+        <div>
+
+            <div class="card-title">
+                What this system analyses
+            </div>
+
+            <div class="card-description">
+                Network-flow classification
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="info-list">
+
+
+        <div class="info-row">
+
+            <span class="info-key">
+                BENIGN
+            </span>
+
+            <span class="info-value">
+                Normal network communication
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-key">
+                BRUTE FORCE
+            </span>
+
+            <span class="info-value">
+                Repeated access or authentication attempts
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-key">
+                DDoS
+            </span>
+
+            <span class="info-value">
+                Distributed denial-of-service traffic
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-key">
+                DoS
+            </span>
+
+            <span class="info-value">
+                Denial-of-service traffic
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <span class="info-key">
+                PORT SCAN
+            </span>
+
+            <span class="info-value">
+                Network reconnaissance activity
+            </span>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script
+    src="{{ url_for('static', filename='js/overview.js') }}"
+></script>
+
+{% endblock %}
